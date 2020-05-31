@@ -8,7 +8,7 @@ app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 app.use(express.static("client/build"));
 
-const AppRoutes = require("./appRoutes/AppRoutes");
+const AppRoutes = require("./routes/AppRoutes");
 
 app.use("/", AppRoutes);
 

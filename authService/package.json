@@ -1,10 +1,10 @@
 {
-  "name": "medium-jwt-auth",
+  "name": "gemstack-insta-backend-auth",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "env-cmd -f ../.env nodemon app.js"
+    "start": "env-cmd -f ../.env nodemon index.js"
   },
   "keywords": [],
   "author": "",

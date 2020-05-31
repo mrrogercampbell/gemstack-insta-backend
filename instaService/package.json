@@ -6,7 +6,7 @@
   "scripts": {
     "startold": "nodemon index.js --ext js,graphql --exec babel-node",
     "start-local": "nodemon -r dotenv/config ../index.js",
-    "start": "env-cmd -f ../.env nodemon ../index.js"
+    "start": "env-cmd -f ../.env nodemon ./index.js"
   },
   "author": "Roger Campbell II",
   "license": "ISC",
