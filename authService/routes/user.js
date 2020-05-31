@@ -4,7 +4,7 @@ const auth = require('../middleware/auth')
 
 const router = express.Router()
 
-router.post('/users', async (req, res) => {
+router.post('/new', async (req, res) => {
     // Create a new user
     try {
         const user = new User(req.body)
@@ -16,7 +16,7 @@ router.post('/users', async (req, res) => {
     }
 })
 
-router.post('/users/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     //Login a registered user
     try {
         const { email, password } = req.body
@@ -32,7 +32,7 @@ router.post('/users/login', async (req, res) => {
 
 })
 
-router.get('/users/token', async (req, res) => {
+router.get('/token', async (req, res) => {
     //Login a registered user
     try {
         const { token } = req.body
@@ -51,12 +51,16 @@ router.get('/users/token', async (req, res) => {
 
 })
 
-router.get('/users/me', auth, async (req, res) => {
+router.get('/me', auth, async (req, res) => {
     // View logged in user profile
     res.send(req.user)
 })
+router.get('/hello', auth, async (req, res) => {
+    // View logged in user profile
+    res.send("Hello")
+})
 
-router.post('/users/me/logout', auth, async (req, res) => {
+router.post('/me/logout', auth, async (req, res) => {
     // Log user out of the application
     try {
         req.user.tokens = req.user.tokens.filter((token) => {
@@ -69,7 +73,7 @@ router.post('/users/me/logout', auth, async (req, res) => {
     }
 })
 
-router.post('/users/me/logoutall', auth, async (req, res) => {
+router.post('/me/logoutall', auth, async (req, res) => {
     // Log user out of all devices
     try {
         req.user.tokens.splice(0, req.user.tokens.length)

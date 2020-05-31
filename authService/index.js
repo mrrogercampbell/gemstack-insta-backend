@@ -1,5 +1,5 @@
 const express = require('express')
-const userRouter = require('./routers/user')
+const userRouter = require('./routes/user')
 const port = process.env.AUTHPORT
 require('../db/connection')
 
