@@ -7,13 +7,15 @@ const router = express.Router()
 router.post('/user/new', async (req, res) => {
     // Create a new user
     try {
+        let hey = 'hello'
         const user = new User(req.body)
-        console.log(user)
         await user.save()
+        // await console.log("done" + user)
         const token = await user.generateAuthToken()
-        res.status(201).send({ user, token })
+        res.status(201).send({ hey, user, token })
     } catch (error) {
-        res.status(400).send(error)
+        res.status(420).send(error)
+        console.log(error)
     }
 })
 
@@ -55,10 +57,6 @@ router.get('/token', async (req, res) => {
 router.get('/me', auth, async (req, res) => {
     // View logged in user profile
     res.send(req.user)
-})
-router.get('/hello', async (req, res) => {
-    // View logged in user profile
-    res.send("Hello")
 })
 
 router.post('/me/logout', auth, async (req, res) => {

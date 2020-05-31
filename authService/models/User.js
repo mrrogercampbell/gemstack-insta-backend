@@ -25,32 +25,28 @@ const userSchema = mongoose.Schema({
         required: true,
         minLength: 7
     },
+    tokens: [{
+        token: {
+            type: String,
+            required: true
+        }
+    }],
     instagram_data: {
         username: {
             type: String,
             required: true,
         },
         user_id: String,
-        tokens: [{
+        tokens: {
             short_token: {
-                token: {
-                    type: String,
-                    required: false
-                },
-                expires_in: {
-
-                }
+                token: String,
+                expires_in: Number
             },
             long_token: {
-                token: {
-                    type: String,
-                    required: false
-                },
-                expires_in: {
-
-                }
+                token: String,
+                expires_in: Number
             }
-        }]
+        }
     }
 })
 
