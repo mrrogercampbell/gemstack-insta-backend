@@ -10,5 +10,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.9.16"
+  }
 }

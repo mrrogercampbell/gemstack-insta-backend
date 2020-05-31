@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('../../db/connection')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')

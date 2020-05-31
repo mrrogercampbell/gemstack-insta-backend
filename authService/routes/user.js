@@ -4,10 +4,11 @@ const auth = require('../middleware/auth')
 
 const router = express.Router()
 
-router.post('/new', async (req, res) => {
+router.post('/user/new', async (req, res) => {
     // Create a new user
     try {
         const user = new User(req.body)
+        console.log(user)
         await user.save()
         const token = await user.generateAuthToken()
         res.status(201).send({ user, token })
@@ -55,7 +56,7 @@ router.get('/me', auth, async (req, res) => {
     // View logged in user profile
     res.send(req.user)
 })
-router.get('/hello', auth, async (req, res) => {
+router.get('/hello', async (req, res) => {
     // View logged in user profile
     res.send("Hello")
 })
