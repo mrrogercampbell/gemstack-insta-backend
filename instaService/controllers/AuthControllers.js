@@ -1,13 +1,5 @@
 const { PostExchangeCodeForToken, GetUserProfileData, ExchangeShortTokenForLongToken, GetMediaData } = require('../logic/ApiClass')
-const { CLIENT_ID, REDIRECT_URI, ClIENT_SECRET } = process.env
-
-const AccessTokenURL = 'http://localhost:4001/oauth/access_token'
-const MeURL = 'http://localhost:4001/oauth/me'
-
-const baseInstagramURI = 'https://api.instagram.com/oauth/access_token'
-const herokuURI = 'https://rc1336-test-insta-api.herokuapp.com/auth'
-
-// import { GetShortForLongToken, PostExchangeCodeForToken, GetUserProfileData, GetMediaData } from './ApiClass'
+const { CLIENT_ID, REDIRECT_URI, ClIENT_SECRET, AccessTokenURL, MeURL, baseInstagramURI, herokuURI } = process.env
 
 
 let userData = {
