@@ -1,6 +1,5 @@
 const express = require('express')
 const userRouter = require('./routes/user')
-const port = process.env.AUTHPORT
 require('../db/connection')
 
 const app = express()
@@ -8,6 +7,9 @@ const app = express()
 app.use(express.json())
 app.use(userRouter)
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`)
+app.set("port", process.env.PORT || process.env.AUTHPORT);
+
+
+app.listen(app.get('port'), () => {
+    console.log(`Server running on port ${app.get("port")}`)
 })

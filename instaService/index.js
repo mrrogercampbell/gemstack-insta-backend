@@ -15,5 +15,5 @@ app.use("/", AppRoutes);
 app.set("port", process.env.PORT || process.env.INSTAPORT);
 
 app.listen(app.get("port"), () => {
-    console.log("Server listening on port " + app.get("port"));
+    console.log(`Server running on port ${app.get("port")}`)
 });
