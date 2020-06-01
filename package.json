@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./authService/index.js && node ./instaService/index.js",
+    "start": "(cd ./authService && npm i && node index.js) & (cd ./instaService && npm i && node index.js)",
     "auth": "env-cmd -f ./.env nodemon ./authService/index.js",
     "insta": "env-cmd -f ./.env nodemon ./instaService/index.js"
   },
