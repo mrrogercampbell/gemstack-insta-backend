@@ -2,6 +2,7 @@ const express = require("express");
 const parser = require("body-parser");
 const cors = require("cors");
 const app = express();
+require('./db/connection')
 
 app.use(cors());
 app.use(parser.urlencoded({ extended: true }));
@@ -10,7 +11,7 @@ app.use(express.static("client/build"));
 
 const AppRoutes = require("./routes/AppRoutes");
 
-app.use("/", AppRoutes);
+app.use(AppRoutes)
 
 app.set("port", process.env.PORT || 3000);
 

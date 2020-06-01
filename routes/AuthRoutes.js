@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const AuthControllers = require('../Controllers/AuthControllers')
+const AuthControllers = require('../instaService/controllers/AuthControllers')
 
 router.get("/", AuthControllers.receiveAuthCode);
 

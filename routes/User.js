@@ -1,10 +1,10 @@
 const express = require('express')
-const User = require('../../db/models/User')
-const auth = require('../middleware/auth')
+const User = require('../db/models/User')
+const Auth = require('../authService/middleware/Auth')
 
 const router = express.Router()
 
-router.post('/user/new', async (req, res) => {
+router.post('/new', async (req, res) => {
     // Create a new user
     try {
         let hey = 'hello'
@@ -54,12 +54,12 @@ router.get('/token', async (req, res) => {
 
 })
 
-router.get('/me', auth, async (req, res) => {
+router.get('/me', Auth, async (req, res) => {
     // View logged in user profile
     res.send(req.user)
 })
 
-router.post('/me/logout', auth, async (req, res) => {
+router.post('/me/logout', Auth, async (req, res) => {
     // Log user out of the application
     try {
         req.user.tokens = req.user.tokens.filter((token) => {
@@ -72,7 +72,7 @@ router.post('/me/logout', auth, async (req, res) => {
     }
 })
 
-router.post('/me/logoutall', auth, async (req, res) => {
+router.post('/me/logoutall', Auth, async (req, res) => {
     // Log user out of all devices
     try {
         req.user.tokens.splice(0, req.user.tokens.length)

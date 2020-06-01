@@ -1,9 +1,8 @@
 const jwt = require('jsonwebtoken')
 const User = require('../../db/models/User')
-// const { JWT_KEY } = require('../../config')
 
 
-const auth = async (req, res, next) => {
+const Auth = async (req, res, next) => {
     const token = req.header('Authorization').replace('Bearer ', '')
     const data = jwt.verify(token, process.env.JWT_KEY)
     // const data = jwt.verify(token, JWT_KEY)
@@ -20,4 +19,4 @@ const auth = async (req, res, next) => {
     }
 
 }
-module.exports = auth
+module.exports = Auth
