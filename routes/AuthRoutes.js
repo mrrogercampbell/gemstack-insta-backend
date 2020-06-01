@@ -4,7 +4,7 @@ const AuthControllers = require('../instaService/controllers/AuthControllers')
 
 router.get("/", AuthControllers.receiveAuthCode);
 
-router.get("/hello", AuthControllers.receiveAuthCode);
+router.get("/hello", AuthControllers.hello);
 
 router.post("/access_token", AuthControllers.accessToken);
 

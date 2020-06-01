@@ -1,5 +1,9 @@
-const { PostExchangeCodeForToken, GetUserProfileData, ExchangeShortTokenForLongToken, GetMediaData } = require('../logic/ApiClass')
+const ApiClass = require('../logic/ApiClass')
 
+let some = new ApiClass
+console.log(some)
+
+// import { PostExchangeCodeForToken, GetUserProfileData, ExchangeShortTokenForLongToken, GetMediaData } from '../logic/ApiClass'
 
 let userData = {
     short_token: "",
@@ -11,7 +15,7 @@ module.exports = {
     receiveAuthCode: (req, res) => {
         let authorization_code = req.query.code
 
-        PostExchangeCodeForToken(authorization_code)
+        some.PostExchangeCodeForToken(authorization_code)
         res.json({
             // Only need to send back a success page if request worked.
             authorization_code: authorization_code
@@ -20,7 +24,7 @@ module.exports = {
     },
 
     hello: (req, res) => {
-        res.send('Hello for the win')
+        res.json({ message: 'Hello for the win' })
     },
     accessToken: (req, res) => {
         let tokenData = {

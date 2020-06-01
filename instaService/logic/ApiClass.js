@@ -29,7 +29,7 @@ class ApiCallLogic {
             })
     }
 
-    PostExchangeCodeForToken = (authorization_code) => {
+    PostExchangeCodeForToken = authorization_code => {
         axios({
             method: 'post',
             url: process.env.EXCHANGE_CODE_FOR_TOKEN_URI,
@@ -95,4 +95,4 @@ class ApiCallLogic {
     }
 }
 
-module.exports = { ApiCallLogic }
+module.exports = ApiCallLogic 
