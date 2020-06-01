@@ -1,5 +1,4 @@
 const { PostExchangeCodeForToken, GetUserProfileData, ExchangeShortTokenForLongToken, GetMediaData } = require('../logic/ApiClass')
-const { CLIENT_ID, REDIRECT_URI, ClIENT_SECRET, AccessTokenURL, MeURL, baseInstagramURI, herokuURI } = process.env
 
 
 let userData = {
@@ -12,7 +11,7 @@ module.exports = {
     receiveAuthCode: (req, res) => {
         let authorization_code = req.query.code
 
-        PostExchangeCodeForToken(AccessTokenURL, CLIENT_ID, ClIENT_SECRET, REDIRECT_URI, authorization_code)
+        PostExchangeCodeForToken(authorization_code)
         res.json({
             // Only need to send back a success page if request worked.
             authorization_code: authorization_code
