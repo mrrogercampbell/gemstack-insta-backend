@@ -19,6 +19,9 @@ module.exports = {
 
     },
 
+    hello: (req, res) => {
+        res.send('Hello for the win')
+    },
     accessToken: (req, res) => {
         let tokenData = {
             access_token: req.body.access_token,
