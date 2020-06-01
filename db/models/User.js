@@ -39,8 +39,7 @@ const userSchema = mongoose.Schema({
         user_id: String,
         tokens: {
             short_token: {
-                token: String,
-                expires_in: Number
+                token: String
             },
             long_token: {
                 token: String,

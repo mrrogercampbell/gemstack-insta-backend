@@ -4,38 +4,28 @@ const UserModel = require("../../db/models/User");
 
 class ApiCallLogic {
     constructor() {
-        this.short_token = ''
-        this.user_id = ''
-        this.long_token = ''
         this.userData = {
-            short_token: "",
-            user_id: "",
-            long_token: ""
+            short_token: '',
+            user_id: '',
+            long_token: '',
+            expires_in: 0,
+            username: ''
         }
     }
 
 
-    ExchangeShortTokenForLongToken = (short_token, user_id) => {
+    ExchangeShortTokenForLongToken = () => {
         axios.get(process.env.LONG_LIVED_TOKEN_URI, {
             params: {
                 grant_type: 'ig_exchange_token',
                 client_secret: process.env.CLIENT_ID,
-                access_token: short_token
+                access_token: this.userData.short_token
             }
         })
             .then(res => {
-                UserModel.updateOne(
-                    { 'instagram_data.user_id': user_id },
-                    {
-                        $set: {
-                            long_token: res.data.access_token,
-                            long_type: res.data.token_type,
-                            long_expires_in: res.data.expires_in
-                        }
-                    }
-                )
-                    .then(updatedUser => console.log(updatedUser))
-                    .catch(err => console.log(err))
+                this.userData.long_token = res.access_token
+                this.userData.expires_in = res.expires_in
+                this.GetUserProfileData()
             })
     }
 
@@ -54,46 +44,42 @@ class ApiCallLogic {
                 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
             }
         })
-            // .then(res => {
-            //     userData.short_token = res.data.access_token
-            //     userData.insta_user_id = res.data.user_id
-            //     userData.hello = res.data.hello
-            //     UserModel.findOneAndUpdate(
-            //         {},
-            //         {
-            //         insta_user_id: res.data.user_id,
-            //         short_token: res.data.access_token,
-            //         // long_token: "String",
-            //         // long_type: "String",
-            //         // long_expires_in: 123
-            //     })
-            //         .then(createdUser => {
-            //             console.log(createdUser)
-            //         })
-            //     return userData
-            // })
             .then(res => {
-                userData.short_token = res.data.access_token
-                userData.insta_user_id = res.data.user_id
-                userData.hello = res.data.hello
-                // console.log(data)
-                this.ExchangeShortTokenForLongToken(res.short_token, res.insta_user_id)
+                this.userData.short_token = res.access_token
+                this.userData.user_id = res.user_id
+                this.ExchangeShortTokenForLongToken()
             })
             .catch(err => console.log(err))
 
     }
 
     GetUserProfileData = () => {
-        let constructedURL = `${process.env.USER_PROFILES_AND_MEDIA_URI}${userData.user_id}`
+        let constructedURL = `${process.env.USER_PROFILES_AND_MEDIA_URI}${this.userData.user_id}`
         axios.get(constructedURL, {
             params: {
                 fields: 'account_type, id, media_count, username',
                 access_token: userData.long_token
             }
         })
-            .then(res => console.log(res.data))
+            .then(res => {
+                this.userData.username = res.username
+                UserModel.findOneAndUpdate(
+                    { 'instagram_data.username': this.userData.username },
+                    {
+                        $set: {
+                            'instagram_data.tokens.short_token.token': this.userData.short_token,
+                            'instagram_data.tokens.long_token.token': this.userData.long_token,
+                            'instagram_data.tokens.long_token.expires_in': this.userData.expires_in,
+                            'instagram_data.user_id': this.userData.user_id,
+
+                        }
+                    },
+                    { new: true }
+                )
+                    .then(updatedRecord => console.log(updatedRecord))
+            })
             .catch(err => console.log(err))
-            .finally(this.ExchangeShortTokenForLongToken())
+        // .finally(this.ExchangeShortTokenForLongToken())
     }
 
     GetMediaData = () => {
