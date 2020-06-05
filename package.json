@@ -1,6 +1,9 @@
 {
   "name": "gemstack_insta_backend",
   "version": "1.0.0",
+  "engines": {
+    "node": "13.x"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {

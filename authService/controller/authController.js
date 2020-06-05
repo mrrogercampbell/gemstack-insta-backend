@@ -4,12 +4,11 @@ module.exports = {
     createUser: async (req, res) => {
         // Create a new user
         try {
-            let hey = 'hello'
             const user = new User(req.body)
             await user.save()
             // await console.log("done" + user)
             const token = await user.generateAuthToken()
-            res.status(201).send({ hey, user, token })
+            res.status(201).send({ user, token })
         } catch (error) {
             res.status(420).send(error)
             console.log(error)
