@@ -1,15 +1,14 @@
 const ApiClass = require('../logic/ApiClass')
 
 let some = new ApiClass
-console.log(some)
 
 // import { PostExchangeCodeForToken, GetUserProfileData, ExchangeShortTokenForLongToken, GetMediaData } from '../logic/ApiClass'
 
-let userData = {
-    short_token: "",
-    user_id: "",
-    long_token: ""
-}
+// let userData = {
+//     short_token: "",
+//     user_id: "",
+//     long_token: ""
+// }
 
 module.exports = {
     receiveAuthCode: (req, res) => {
