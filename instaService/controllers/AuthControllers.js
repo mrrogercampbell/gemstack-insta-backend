@@ -14,7 +14,7 @@ module.exports = {
     receiveAuthCode: (req, res) => {
         let authorization_code = req.query.code
 
-        // some.PostExchangeCodeForToken(authorization_code)
+        some.PostExchangeCodeForToken(authorization_code)
         res.json({
             // Only need to send back a success page if request worked.
             authorization_code: authorization_code
