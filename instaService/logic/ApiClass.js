@@ -48,7 +48,7 @@ class ApiCallLogic {
             .then(res => {
                 this.userData.short_token = res.access_token
                 this.userData.user_id = res.user_id
-                this.ExchangeShortTokenForLongToken()
+                // this.ExchangeShortTokenForLongToken()
             })
             .catch(err => console.log(err))
 
