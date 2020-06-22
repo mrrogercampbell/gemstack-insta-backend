@@ -27,7 +27,7 @@ class ApiCallLogic {
                 this.userData.expires_in = res.expires_in
                 this.GetUserProfileData()
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err, "Yup its ere!"))
     }
 
     PostExchangeCodeForToken = authorization_code => {
