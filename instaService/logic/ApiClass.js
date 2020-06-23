@@ -61,7 +61,7 @@ class ApiCallLogic {
         let constructedURL = `${process.env.USER_PROFILES_AND_MEDIA_URI}${this.userData.user_id}`
         axios.get(constructedURL, {
             params: {
-                fields: 'account_type, id, media_count, username',
+                fields: 'account_type,id,media_count,username',
                 access_token: this.userData.long_token
             }
         })
