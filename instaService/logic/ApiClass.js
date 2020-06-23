@@ -15,7 +15,6 @@ class ApiCallLogic {
 
 
     ExchangeShortTokenForLongToken = () => {
-        console.log(this.userData)
         axios.get(process.env.LONG_LIVED_TOKEN_URI, {
             params: {
                 grant_type: 'ig_exchange_token',
@@ -26,8 +25,8 @@ class ApiCallLogic {
             .then(res => {
                 this.userData.long_token = res.data.access_token
                 this.userData.expires_in = res.data.expires_in
-                this.GetUserProfileData()
             })
+            .then(this.GetUserProfileData())
             .catch(err => console.log(err, "Yup its ere!"))
     }
 
@@ -58,6 +57,7 @@ class ApiCallLogic {
     }
 
     GetUserProfileData = () => {
+        console.log(this.userData)
         let constructedURL = `${process.env.USER_PROFILES_AND_MEDIA_URI}${this.userData.user_id}`
         axios.get(constructedURL, {
             params: {
