@@ -31,32 +31,32 @@ class ApiCallLogic {
     }
 
     PostExchangeCodeForToken = async authorization_code => {
-        try {
-            let res = await axios({
-                method: 'post',
-                url: process.env.EXCHANGE_CODE_FOR_TOKEN_URI,
-                data: qs.stringify({
-                    client_id: process.env.CLIENT_ID,
-                    client_secret: process.env.ClIENT_SECRET,
-                    grant_type: 'authorization_code',
-                    redirect_uri: process.env.REDIRECT_URI,
-                    code: authorization_code
-                }),
-                headers: {
-                    'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
-                }
-            })
-            let { data } = res.data
-            console.log(data)
-        } catch (err) { console.log(err) }
-        // .then(res => {
-        //     console.log(res)
-        //     this.userData.short_token = res.access_token
-        //     this.userData.user_id = res.user_id
-        //     // console.log(this.userData)
-        //     // this.ExchangeShortTokenForLongToken()
-        // })
-        // .catch(err => console.log(err))
+        // try {
+        //     let res = await axios({
+        //         method: 'post',
+        //         url: process.env.EXCHANGE_CODE_FOR_TOKEN_URI,
+        //         data: qs.stringify({
+        //             client_id: process.env.CLIENT_ID,
+        //             client_secret: process.env.ClIENT_SECRET,
+        //             grant_type: 'authorization_code',
+        //             redirect_uri: process.env.REDIRECT_URI,
+        //             code: authorization_code
+        //         }),
+        //         headers: {
+        //             'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+        //         }
+        //     })
+        //     let { data } = res.data
+        //     console.log(data)
+        // } catch (err) { console.log(err) }
+        .then(res => {
+        console.log(res)
+        this.userData.short_token = res.access_token
+        this.userData.user_id = res.user_id
+        // console.log(this.userData)
+        // this.ExchangeShortTokenForLongToken()
+    })
+            .catch(err => console.log(err))
 
     }
 
