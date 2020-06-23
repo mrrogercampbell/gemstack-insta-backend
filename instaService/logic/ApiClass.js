@@ -16,22 +16,21 @@ class ApiCallLogic {
 
     ExchangeShortTokenForLongToken = () => {
         console.log(this.userData)
-        // axios.get(process.env.LONG_LIVED_TOKEN_URI, {
-        //     params: {
-        //         grant_type: 'ig_exchange_token',
-        //         client_secret: process.env.CLIENT_ID,
-        //         access_token: this.userData.short_token
-        //     }
-        // })
-        //     .then(res => {
-        //         console.log(this.userData)
-        //         console.log(res.data)
-        //         this.userData.long_token = res.access_token
-        //         this.userData.expires_in = res.expires_in
-        //         console.log(this.userData)
-        //         // this.GetUserProfileData()
-        //     })
-        //     .catch(err => console.log(err, "Yup its ere!"))
+        axios.get(process.env.LONG_LIVED_TOKEN_URI, {
+            params: {
+                grant_type: 'ig_exchange_token',
+                client_secret: process.env.CLIENT_ID,
+                access_token: this.userData.short_token
+            }
+        })
+            .then(res => {
+                console.log(res.data)
+                this.userData.long_token = res.access_token
+                this.userData.expires_in = res.expires_in
+                console.log(this.userData)
+                // this.GetUserProfileData()
+            })
+            .catch(err => console.log(err, "Yup its ere!"))
     }
 
     PostExchangeCodeForToken = authorization_code => {
