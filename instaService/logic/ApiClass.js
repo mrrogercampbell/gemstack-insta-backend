@@ -46,10 +46,10 @@ class ApiCallLogic {
             }
         })
             .then(res => {
-                // console.log(res)
+                console.log(`UserId in res: ${res.data.user_id}`)
                 this.userData.short_token = res.data.access_token
                 this.userData.user_id = res.data.user_id
-                console.log(`UserID: ${this.userData.user_id}`)
+                console.log(`UserID in userData: ${this.userData.user_id}`)
                 this.ExchangeShortTokenForLongToken()
             })
             .catch(err => console.log("Error in PostExchangeCodeForToken:", err))
