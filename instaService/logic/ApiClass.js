@@ -25,7 +25,7 @@ class ApiCallLogic {
             .then(res => {
                 this.userData.long_token = res.data.access_token
                 this.userData.expires_in = res.data.expires_in
-                console.log(`ExchangeShortForLong UserData: ` + this.userData)
+                console.log(`ExchangeShortForLong UserData: `, this.userData)
             })
             // .then(this.GetUserProfileData())
             .catch(err => console.log("Error in ExchangeShortTokenForLongToken:", err))
@@ -62,7 +62,7 @@ class ApiCallLogic {
     }
 
     GetUserProfileData = () => {
-        console.log(`GetUserProfileData UserData: ` + this.userData)
+        console.log(`GetUserProfileData UserData: `, this.userData)
         // let constructedURL = `${process.env.USER_PROFILES_AND_MEDIA_URI}${this.userData.user_id}`
         let constructedURL = `${process.env.USER_PROFILES_AND_MEDIA_URI}`
         axios.get(constructedURL, {
