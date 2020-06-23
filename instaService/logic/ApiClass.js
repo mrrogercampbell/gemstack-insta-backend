@@ -50,6 +50,10 @@ class ApiCallLogic {
                 this.userData.short_token = res.data.access_token
                 this.userData.user_id = res.data.user_id
                 console.log(`UserID in userData: ${this.userData.user_id}`)
+
+                // UserModel.create()
+
+
                 this.ExchangeShortTokenForLongToken()
             })
             .catch(err => console.log("Error in PostExchangeCodeForToken:", err))
@@ -58,10 +62,12 @@ class ApiCallLogic {
 
     GetUserProfileData = () => {
         console.log(this.userData)
-        let constructedURL = `${process.env.USER_PROFILES_AND_MEDIA_URI}${this.userData.user_id}`
+        // let constructedURL = `${process.env.USER_PROFILES_AND_MEDIA_URI}${this.userData.user_id}`
+        let constructedURL = `${process.env.USER_PROFILES_AND_MEDIA_URI}`
         axios.get(constructedURL, {
             params: {
-                fields: 'account_type,id,media_count,username',
+                // fields: 'account_type,id,media_count,username',
+                fields: 'id,username',
                 access_token: this.userData.long_token
             }
         })
@@ -98,6 +104,8 @@ class ApiCallLogic {
             .then(res => console.log(res.data))
             .catch(err => console.log("Error in GetMediaData", err))
     }
+
+
 }
 
 module.exports = ApiCallLogic
