@@ -24,11 +24,9 @@ class ApiCallLogic {
             }
         })
             .then(res => {
-                console.log(res.data)
                 this.userData.long_token = res.data.access_token
                 this.userData.expires_in = res.data.expires_in
-                console.log(this.userData)
-                // this.GetUserProfileData()
+                this.GetUserProfileData()
             })
             .catch(err => console.log(err, "Yup its ere!"))
     }
@@ -68,21 +66,22 @@ class ApiCallLogic {
             }
         })
             .then(res => {
-                this.userData.username = res.username
-                UserModel.findOneAndUpdate(
-                    { 'instagram_data.username': this.userData.username },
-                    {
-                        $set: {
-                            'instagram_data.tokens.short_token.token': this.userData.short_token,
-                            'instagram_data.tokens.long_token.token': this.userData.long_token,
-                            'instagram_data.tokens.long_token.expires_in': this.userData.expires_in,
-                            'instagram_data.user_id': this.userData.user_id,
+                this.userData.username = res.data.username
+                console.log(this.userData)
+                // UserModel.findOneAndUpdate(
+                //     { 'instagram_data.username': this.userData.username },
+                //     {
+                //         $set: {
+                //             'instagram_data.tokens.short_token.token': this.userData.short_token,
+                //             'instagram_data.tokens.long_token.token': this.userData.long_token,
+                //             'instagram_data.tokens.long_token.expires_in': this.userData.expires_in,
+                //             'instagram_data.user_id': this.userData.user_id,
 
-                        }
-                    },
-                    { new: true }
-                )
-                    .then(updatedRecord => console.log(updatedRecord))
+                //         }
+                //     },
+                //     { new: true }
+                // )
+                //     .then(updatedRecord => console.log(updatedRecord))
             })
             .catch(err => console.log(err))
         // .finally(this.ExchangeShortTokenForLongToken())
