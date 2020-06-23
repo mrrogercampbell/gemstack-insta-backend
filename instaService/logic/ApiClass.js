@@ -19,7 +19,7 @@ class ApiCallLogic {
         axios.get(process.env.LONG_LIVED_TOKEN_URI, {
             params: {
                 grant_type: 'ig_exchange_token',
-                client_secret: process.env.CLIENT_ID,
+                client_secret: process.env.ClIENT_SECRET,
                 access_token: this.userData.short_token
             }
         })
