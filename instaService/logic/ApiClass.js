@@ -27,7 +27,7 @@ class ApiCallLogic {
                 this.userData.expires_in = res.data.expires_in
             })
             .then(this.GetUserProfileData())
-            .catch(err => console.log(err, "Yup its ere!"))
+            .catch(err => console.log("Error in ExchangeShortTokenForLongToken:", err))
     }
 
     PostExchangeCodeForToken = authorization_code => {
@@ -52,7 +52,7 @@ class ApiCallLogic {
                 // console.log(this.userData)
                 this.ExchangeShortTokenForLongToken()
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log("Error in PostExchangeCodeForToken:", err))
 
     }
 
@@ -83,7 +83,7 @@ class ApiCallLogic {
                 // )
                 //     .then(updatedRecord => console.log(updatedRecord))
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log("Error in GetUserProfileData", err))
         // .finally(this.ExchangeShortTokenForLongToken())
     }
 
@@ -96,8 +96,8 @@ class ApiCallLogic {
             }
         })
             .then(res => console.log(res.data))
-            .catch(err => console.log(err))
+            .catch(err => console.log("Error in GetMediaData", err))
     }
 }
 
-module.exports = ApiCallLogic 
+module.exports = ApiCallLogic
