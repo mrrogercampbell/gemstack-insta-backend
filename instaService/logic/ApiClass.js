@@ -23,9 +23,11 @@ class ApiCallLogic {
             }
         })
             .then(res => {
+                console.log(res.data)
                 this.userData.long_token = res.access_token
                 this.userData.expires_in = res.expires_in
-                this.GetUserProfileData()
+                console.log(this.userData)
+                // this.GetUserProfileData()
             })
             .catch(err => console.log(err, "Yup its ere!"))
     }
@@ -50,7 +52,7 @@ class ApiCallLogic {
                 this.userData.short_token = res.data.access_token
                 this.userData.user_id = res.data.user_id
                 console.log(this.userData)
-                // this.ExchangeShortTokenForLongToken()
+                this.ExchangeShortTokenForLongToken()
             })
             .catch(err => console.log(err))
 
