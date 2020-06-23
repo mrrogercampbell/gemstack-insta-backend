@@ -25,8 +25,8 @@ class ApiCallLogic {
         })
             .then(res => {
                 console.log(res.data)
-                this.userData.long_token = res.access_token
-                this.userData.expires_in = res.expires_in
+                this.userData.long_token = res.data.access_token
+                this.userData.expires_in = res.data.expires_in
                 console.log(this.userData)
                 // this.GetUserProfileData()
             })
