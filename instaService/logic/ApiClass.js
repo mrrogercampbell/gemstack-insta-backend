@@ -62,7 +62,7 @@ class ApiCallLogic {
         axios.get(constructedURL, {
             params: {
                 fields: 'account_type, id, media_count, username',
-                access_token: userData.long_token
+                access_token: this.userData.long_token
             }
         })
             .then(res => {
