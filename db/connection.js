@@ -16,7 +16,7 @@ mongoose
   .connect(mongoURI, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useFindAndModify: false,
+    useFindAndModify: true,
     useUnifiedTopology: true
   })
   .then(instance =>
