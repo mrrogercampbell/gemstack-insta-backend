@@ -25,7 +25,7 @@ class ApiCallLogic {
             .then(res => {
                 this.userData.long_token = res.data.access_token
                 this.userData.expires_in = res.data.expires_in
-                console.log(`ExchangeShortForLong UserData: `, this.userData)
+                // console.log(`ExchangeShortForLong UserData: `, this.userData)
                 return this.userData
             })
             .then(res => this.GetUserProfileData())
@@ -74,6 +74,7 @@ class ApiCallLogic {
             }
         })
             .then(res => {
+                console.log(res.data)
                 this.userData.username = res.data.username
                 console.log(this.userData)
                 // UserModel.findOneAndUpdate(
