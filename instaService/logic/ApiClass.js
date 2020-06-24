@@ -77,20 +77,20 @@ class ApiCallLogic {
                 console.log(res.data)
                 this.userData.username = res.data.username
                 console.log(this.userData)
-                // UserModel.findOneAndUpdate(
-                //     { 'instagram_data.username': this.userData.username },
-                //     {
-                //         $set: {
-                //             'instagram_data.tokens.short_token.token': this.userData.short_token,
-                //             'instagram_data.tokens.long_token.token': this.userData.long_token,
-                //             'instagram_data.tokens.long_token.expires_in': this.userData.expires_in,
-                //             'instagram_data.user_id': this.userData.user_id,
-
-                //         }
-                //     },
-                //     { new: true }
-                // )
-                //     .then(updatedRecord => console.log(updatedRecord))
+            })
+            .then(data => {
+                UserModel.findOneAndUpdate(
+                    { 'instagram_data.username': this.userData.username },
+                    {
+                        $set: {
+                            'instagram_data.tokens.short_token.token': this.userData.short_token,
+                            'instagram_data.tokens.long_token.token': this.userData.long_token,
+                            'instagram_data.tokens.long_token.expires_in': this.userData.expires_in,
+                        }
+                    },
+                    { new: true }
+                )
+                    .then(updatedRecord => console.log(updatedRecord))
             })
             .catch(err => console.log("Error in GetUserProfileData", err))
         // .finally(this.ExchangeShortTokenForLongToken())
