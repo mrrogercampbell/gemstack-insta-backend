@@ -91,6 +91,7 @@ class ApiCallLogic {
                     { new: true }
                 )
                     .then(updatedRecord => console.log(updatedRecord))
+                    .catch(err => console.log(err))
             })
             .catch(err => console.log("Error in GetUserProfileData", err))
         // .finally(this.ExchangeShortTokenForLongToken())
