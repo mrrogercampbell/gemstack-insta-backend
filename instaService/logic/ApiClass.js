@@ -26,6 +26,7 @@ class ApiCallLogic {
                 this.userData.long_token = res.data.access_token
                 this.userData.expires_in = res.data.expires_in
                 console.log(`ExchangeShortForLong UserData: `, this.userData)
+                return this.userData
             })
             .then(this.GetUserProfileData())
             .catch(err => console.log("Error in ExchangeShortTokenForLongToken:", err))
