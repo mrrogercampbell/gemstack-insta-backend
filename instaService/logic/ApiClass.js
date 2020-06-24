@@ -79,7 +79,7 @@ class ApiCallLogic {
                 console.log(this.userData)
             })
             .then(data => {
-                UserModel.findOneAndUpdate(
+                UserModel.updateOne(
                     { 'instagram_data.username': this.userData.username },
                     {
                         $set: {
