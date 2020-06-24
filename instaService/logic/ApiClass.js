@@ -27,7 +27,7 @@ class ApiCallLogic {
                 this.userData.expires_in = res.data.expires_in
                 console.log(`ExchangeShortForLong UserData: `, this.userData)
             })
-            // .then(this.GetUserProfileData())
+            .then(this.GetUserProfileData())
             .catch(err => console.log("Error in ExchangeShortTokenForLongToken:", err))
     }
 
