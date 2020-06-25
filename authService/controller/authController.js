@@ -5,7 +5,8 @@ module.exports = {
         // Create a new user
         try {
             const userData = {
-                name: req.body.name,
+                fName: req.body.fName,
+                lName: req.body.lName,
                 email: req.body.email,
                 password: req.body.password,
                 instagram_data: {
