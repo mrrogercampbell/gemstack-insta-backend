@@ -24,19 +24,6 @@ module.exports = {
             console.log(error)
         }
     },
-    // createUser: async (req, res) => {
-    //     // Create a new user
-    //     try {
-    //         const user = new User(req.body)
-    //         await user.save()
-    //         // await console.log("done" + user)
-    //         const token = await user.generateAuthToken()
-    //         res.status(201).send({ user, token })
-    //     } catch (error) {
-    //         res.status(420).send(error)
-    //         console.log(error)
-    //     }
-    // },
 
     userLogin: async (req, res) => {
         //Login a registered user
@@ -52,6 +39,10 @@ module.exports = {
             res.status(400).send(error)
         }
 
+    },
+
+    getData: async (req, res) => {
+        res.json({ hello: "Hello" })
     },
 
     createToken: async (req, res) => {

@@ -12,6 +12,9 @@ router.get('/token', AuthController.createToken)
 
 router.get('/me', Auth, AuthController.getUserProfile)
 
+router.get("/getdata", Auth, AuthController.getData);
+
+
 router.post('/me/logout', Auth, AuthController.logOutSingleUserToken)
 
 router.post('/me/logoutall', Auth, AuthController.logOutAllUserTokens)
