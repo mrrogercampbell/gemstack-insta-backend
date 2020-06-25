@@ -4,7 +4,16 @@ module.exports = {
     createUser: async (req, res) => {
         // Create a new user
         try {
-            const user = new User(req.body)
+            const userData = {
+                name: req.body.name,
+                email: req.body.email,
+                password: req.body.password,
+                instagram_data: {
+                    username: req.body.username
+                }
+            }
+
+            const user = new User(userData)
             await user.save()
             // await console.log("done" + user)
             const token = await user.generateAuthToken()
