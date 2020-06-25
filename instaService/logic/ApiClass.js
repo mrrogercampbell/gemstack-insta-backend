@@ -84,15 +84,16 @@ class ApiCallLogic {
             .catch(err => console.log("Error in GetUserProfileData", err))
     }
 
-    GetMediaData = () => {
-        axios.get(process.env.USER_MEDIA_URI, {
+    GetMediaData = (instaToken) => {
+        let URI = process.env.USER_MEDIA_URI
+        axios.get(URI, {
             params: {
-                user_id: 0,
-                fields: 'id, media_type, media_url, permalink, thumbnail_url, timestamp, caption, username',
-                access_token: userData.long_token
+                fields: 'id,media_type,media_url,permalink,thumbnail_url,timestamp,caption,username',
+                access_token: instaToken
             }
         })
-            .then(res => console.log(res.data))
+            .then(res => res.data)
+            // .then(res => console.log(res.data))
             .catch(err => console.log("Error in GetMediaData", err))
     }
 

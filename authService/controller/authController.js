@@ -1,4 +1,5 @@
 const User = require('../../db/models/User')
+const axios = require('axios')
 
 module.exports = {
     createUser: async (req, res) => {
@@ -42,7 +43,26 @@ module.exports = {
     },
 
     getData: async (req, res) => {
-        res.json({ hello: "Hello" })
+        const token = req.header('Authorization').replace('Bearer ', '')
+
+        // let doc = User.findOne({ 'tokens.token': token })
+        // console.log(doc.schema.tree.instagram_data.tokens.long_token.token)
+
+        User.findOne({ 'tokens.token': token })
+            .then(doc => {
+                let instaToken = doc.instagram_data.tokens.long_token.token
+
+                let URI = process.env.USER_MEDIA_URI
+                let data = axios.get(URI, {
+                    params: {
+                        fields: 'id,media_type,media_url,permalink,thumbnail_url,timestamp,caption,username',
+                        access_token: instaToken
+                    }
+                })
+                return data
+            })
+            .then(userData => res.json(userData.data))
+            .catch(err => console.log(err))
     },
 
     createToken: async (req, res) => {
